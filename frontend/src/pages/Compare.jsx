@@ -4,10 +4,32 @@ import Navbar from "../components/navbar";
 export default function Compare() {
   const [pickup, setPickup] = useState("");
   const [destination, setDestination] = useState("");
+  const [quotes, setQuotes] = useState([]);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ pickup, destination });
+    setError("");
+    setQuotes([]);
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/compare/", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ pickup, destination }),
+});
+
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.detail || "Failed to fetch quotes");
+      }
+
+      const data = await response.json();
+      setQuotes(data);
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -40,6 +62,21 @@ export default function Compare() {
               Compare
             </button>
           </form>
+
+          {error && <p className="text-red-500 mt-4">{error}</p>}
+
+          {quotes.length > 0 && (
+            <div className="mt-6">
+              <h3 className="font-semibold mb-2">Quotes:</h3>
+              <ul className="list-disc list-inside">
+                {quotes.map((q, idx) => (
+                  <li key={idx}>
+                    {q.provider}: ${q.price}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>
