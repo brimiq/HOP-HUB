@@ -12,7 +12,7 @@ app = FastAPI(title="HopHub API")
 # Allow React frontend to make requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React dev server
+    allow_origins=["http://localhost:5173"],  # React dev server
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods (GET, POST, OPTIONS, etc.)
     allow_headers=["*"],  # Allow all headers
