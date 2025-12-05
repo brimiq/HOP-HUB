@@ -1,0 +1,9 @@
+/* src/input.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: add some global styles */
+body {
+  @apply bg-orange-50 text-gray-800 font-sans;
+}
