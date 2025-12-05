@@ -12,19 +12,21 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-md w-full py-4 px-6 flex justify-center gap-4">
       <Link to="/" className={linkClasses("/")}>
+        Home
+      </Link>
+      <Link to="/compare" className={linkClasses("/compare")}>
         Compare
       </Link>
       <Link to="/results" className={linkClasses("/results")}>
         Results
       </Link>
-     
       <Link to="/how-to-use" className={linkClasses("/how-to-use")}>
         How to Use
       </Link>
       <Link to="/faq-contact" className={linkClasses("/faq-contact")}>
         FAQ / Contact
       </Link>
-       <Link to="/login" className={linkClasses("/login")}>
+      <Link to="/login" className={linkClasses("/login")}>
         Login
       </Link>
     </nav>
