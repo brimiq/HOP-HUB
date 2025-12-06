@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-orange-50 flex flex-col items-center justify-center">
-      <Navbar />
+  
       <div className="bg-white p-10 rounded-3xl shadow-xl w-full max-w-md text-center">
         <h1 className="text-4xl font-bold text-orange-600 mb-6">
           Welcome to HopHub

@@ -14,7 +14,7 @@ export default function FaqContact() {
 
   return (
     <div className="min-h-screen bg-orange-50 flex flex-col items-center">
-      <Navbar />
+      
 
       <div className="bg-white p-10 rounded-3xl shadow-xl w-full max-w-3xl mt-8">
         <h2 className="text-3xl font-bold text-orange-600 mb-6 text-center">

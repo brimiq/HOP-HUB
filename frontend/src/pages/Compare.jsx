@@ -41,7 +41,7 @@ export default function Compare() {
 
   return (
     <div className="min-h-screen bg-orange-50 flex flex-col">
-      <Navbar />
+      
       <div className="flex flex-1 items-center justify-center px-4">
         <div className="bg-white p-10 rounded-3xl shadow-xl w-full max-w-md text-center">
           <h2 className="text-3xl font-bold text-orange-600 mb-6">
