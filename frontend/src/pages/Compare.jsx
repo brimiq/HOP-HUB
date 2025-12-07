@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-
 export default function Compare() {
   const [pickup, setPickup] = useState("");
   const [destination, setDestination] = useState("");

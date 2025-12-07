@@ -2,9 +2,9 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { SignedIn, SignedOut, RedirectToSignIn } from "@clerk/clerk-react";
 
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import Compare from "./pages/compare";
+import Compare from "./pages/Compare";
 import Results from "./pages/Results";
 import Login from "./pages/Login";
 import HowToUse from "./pages/HowToUse";
