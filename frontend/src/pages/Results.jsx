@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 
 export default function Results() {
   const [searches, setSearches] = useState([]);
