@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { SignedIn, SignedOut, RedirectToSignIn } from "@clerk/clerk-react";
 
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar";
 import Home from "./pages/Home";
 import Compare from "./pages/compare";
 import Results from "./pages/Results";
@@ -11,11 +11,12 @@ import HowToUse from "./pages/HowToUse";
 import FaqContact from "./pages/FaqContact";
 import "./input.css";
 
+
+
 function App() {
   return (
     <>
-      {/* Global Navbar (always visible, signed-in or not) */}
-      <Navbar />
+    
 
       <div className="pt-20 px-4">
         <Routes>
