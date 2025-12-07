@@ -33,3 +33,14 @@ class Quote(Base):
 
     provider = relationship("Provider", back_populates="quotes")
     route = relationship("RouteRequest", back_populates="quotes")
+
+class UserSearch(Base):
+    __tablename__ = "user_searches"
+
+    id = Column(Integer, primary_key=True, index=True)
+    pickup = Column(String)
+    destination = Column(String)
+    timestamp = Column(Float)  # store as Unix time for ordering
+
+    # Optional: if you have users from Clerk or your auth system
+    user_id = Column(String, nullable=True)

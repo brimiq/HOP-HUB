@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from backend.database import get_db, init_db
-from backend.models import Provider, RouteRequest, Quote
+from backend.models import Provider, RouteRequest, Quote, UserSearch
 
 import random
 
@@ -102,6 +102,18 @@ def list_quotes(db: Session = Depends(get_db)):
     return db.query(Quote).all()
 
 
+@app.get("/results/")
+def get_last_searches(db: Session = Depends(get_db), user_id: str = None):
+    query = db.query(UserSearch)
+    if user_id:
+        query = query.filter(UserSearch.user_id == user_id)
+    results = query.order_by(UserSearch.timestamp.desc()).limit(3).all()
+    return [
+        {"pickup": r.pickup, "destination": r.destination, "timestamp": r.timestamp}
+        for r in results
+    ]
+
+
 # ------------------------------
 # Compare Logic (UPGRADED)
 # ------------------------------
@@ -113,7 +125,22 @@ def compare_rides(
     pickup = data.get("pickup")
     destination = data.get("destination")
     sort = data.get("sort", "cheapest")  # default cheapest
+    user_id = data.get("user_id", "anonymous")  # optional user identifier
 
+    # ---------------------------
+    # Save the search for last searches
+    # ---------------------------
+    search = UserSearch(
+        user_id=user_id,
+        pickup=pickup,
+        destination=destination
+    )
+    db.add(search)
+    db.commit()
+
+    # ---------------------------
+    # Find the route
+    # ---------------------------
     route = db.query(RouteRequest).filter_by(origin=pickup, destination=destination).first()
     if not route:
         raise HTTPException(status_code=404, detail="Route not found")
@@ -122,19 +149,23 @@ def compare_rides(
     if not quotes:
         raise HTTPException(status_code=404, detail="No quotes found")
 
+    # ---------------------------
     # Build response objects
+    # ---------------------------
     results = [
         {
             "provider_id": q.provider.id,
             "provider": q.provider.name,
             "price": q.price,
             "eta": q.eta,
-            "score": round((q.price * 0.7) + (q.eta * 0.3), 2)  # future: composite score
+            "score": round((q.price * 0.7) + (q.eta * 0.3), 2)
         }
         for q in quotes
     ]
 
+    # ---------------------------
     # Sorting logic
+    # ---------------------------
     if sort == "cheapest":
         results.sort(key=lambda x: x["price"])
     elif sort == "fastest":
