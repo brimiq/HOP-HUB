@@ -1,5 +1,5 @@
-from backend.database import session_local, engine, Base
-from backend.models import Provider
+from database import session_local, engine, Base
+from models import Provider
 
 # Create tables
 Base.metadata.create_all(bind=engine)

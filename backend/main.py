@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Depends, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-from backend.database import get_db, init_db
-from backend.models import Provider, RouteRequest, Quote, UserSearch
+from database import get_db, init_db
+from models import Provider, RouteRequest, Quote, UserSearch
 
 import random
 

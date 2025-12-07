@@ -25,5 +25,5 @@ def get_db():
 
 # Optional: create tables
 def init_db():
-    from backend.models import Provider, RouteRequest, Quote  # absolute import
+    from models import Provider, RouteRequest, Quote  # absolute import
     Base.metadata.create_all(bind=engine)

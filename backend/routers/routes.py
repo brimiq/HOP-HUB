@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Body
 from sqlalchemy.orm import Session
-from backend.database import get_db
-from backend.models import Provider, RouteRequest
+from database import get_db
+from models import Provider, RouteRequest
 import random
 
 router = APIRouter()
