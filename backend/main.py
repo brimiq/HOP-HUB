@@ -11,15 +11,13 @@ app = FastAPI(title="HopHub API")
 
 # ------------------------------
 # Enable CORS for frontend
-# ------------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["*"],  # allows any frontend
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # ------------------------------
 # Init DB
 # ------------------------------
