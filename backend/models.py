@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
-from database import Base
+from backend.database import Base
 
 class Provider(Base):
     __tablename__ = "providers"
@@ -29,6 +29,7 @@ class Quote(Base):
     provider_id = Column(Integer, ForeignKey("providers.id"))
     route_id = Column(Integer, ForeignKey("routes.id"))
     price = Column(Float)
+    eta = Column(Integer)   # add this!
 
     provider = relationship("Provider", back_populates="quotes")
     route = relationship("RouteRequest", back_populates="quotes")

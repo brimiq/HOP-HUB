@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../components/navbar";
+import Navbar from "../components/Navbar";
 
 export default function FaqContact() {
   const [message, setMessage] = useState("");

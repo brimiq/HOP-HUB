@@ -5,9 +5,9 @@ from backend.database import get_db, init_db
 from backend.models import Provider, RouteRequest, Quote
 
 import random
-import time
 
 app = FastAPI(title="HopHub API")
+
 
 # ------------------------------
 # Enable CORS for frontend

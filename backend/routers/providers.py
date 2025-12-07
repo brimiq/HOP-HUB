@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from database import get_db
-from models import Provider
+from backend.database import get_db
+from backend.models import Provider
 import random
+
 
 router = APIRouter()
 
